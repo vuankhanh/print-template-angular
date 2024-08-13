@@ -1,0 +1,11 @@
+div[cdkdrag]{
+  cursor: move;
+  width: fit-content;
+}
+
+::ng-deep {
+  app-text{
+    display: block;
+    width: fit-content;
+  }
+}
