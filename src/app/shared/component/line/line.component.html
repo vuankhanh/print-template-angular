@@ -1,1 +1,10 @@
-<p>line works!</p>
+<div class="tool-container" appClickOutside cdkDrag cdkDragBoundary=".template-container"
+  [cdkDragFreeDragPosition]="position" (cdkDragEnded)="onDragEnded($event)"
+  [ngStyle]="{'outline' : isSelection ? '2px solid blue' : 'none', 'width.px': size.x}"
+  (clickOutside)="onClickOutside($event)">
+  <div class="divider" [ngStyle]="{'background': lineEdit.lineColor, 'height.px': lineEdit.lineHeight}"></div>
+  <div *ngIf="isSelection" class="resize-handle resize-handle-right" appResizeHandle direction="right"
+    (newWidth)="onNewWidth($event)">
+    <mat-icon>swap_horiz</mat-icon>
+  </div>
+</div>

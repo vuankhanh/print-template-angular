@@ -1,1 +1,10 @@
-<p>qr-code works!</p>
+<div class="tool-container" appClickOutside cdkDrag cdkDragBoundary=".template-container" [cdkDragFreeDragPosition]="position"
+  (cdkDragEnded)="onDragEnded($event)" [ngStyle]="{'outline': isSelection ? '2px solid blue' : 'none', 'width.px': size.x, 'height.px': size.y}" (clickOutside)="onClickOutside($event)">
+  <img [src]="image" alt="">
+  <div *ngIf="isSelection" class="resize-handle resize-handle-right" appResizeHandle direction="right" (newWidth)="onNewWidth($event)">
+    <mat-icon>swap_horiz</mat-icon>
+  </div>
+  <div *ngIf="isSelection" class="resize-handle resize-handle-bottom" appResizeHandle direction="bottom" (newHeight)="onNewHeight($event)">
+    <mat-icon>swap_vert</mat-icon>
+  </div>
+</div>

@@ -3,26 +3,40 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-
-.dragHandle {
+div[cdkdrag]{
+  cursor: move;
+  width: fit-content;
+  height: auto;
+  line-height: 1.2;
   position: absolute;
-  background-color: red;
 }
 
-.dragHandle.corner {
-  width: 15px;
-  height: 15px;
-  cursor: nwse-resize;
+.tool-container{
+  max-width: 100%;
+  max-height: 100%;
 }
 
-.dragHandle.right {
-  width: 2px;
-  height: 100%;
-  cursor: ew-resize;
+.resize-handle{
+  background-color: blue;
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+  mat-icon{
+    font-size: 36px;
+    height: 36px;
+    width: 36px;
+    color: white;
+  }
+}
+.resize-handle-right {
+  top: calc(50% - 18px);
+  right: -18px;
+  cursor: e-resize;
 }
 
-.dragHandle.bottom {
-  height: 2px;
-  width: 100%;
-  cursor: ns-resize;
+.resize-handle-bottom {
+  left: calc(50% - 18px);
+  bottom: -18px;
+  cursor: n-resize;
 }

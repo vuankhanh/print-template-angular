@@ -1,3 +1,12 @@
-<div contenteditable="true" cdkDrag cdkDragBoundary=".template-container">
-  {{text}}
+<div class="tool-container" appClickOutside cdkDrag cdkDragBoundary=".template-container" [cdkDragFreeDragPosition]="position"
+  (cdkDragEnded)="onDragEnded($event)" [ngStyle]="{'outline' : isSelection ? '2px solid blue' : 'none', 'width.px': size.x}" (clickOutside)="onClickOutside($event)">
+  @if (textEdit) {
+  <div
+    [ngStyle]="{'font-size.px': textEdit.textSize, 'font-style': textEdit.textStyle, 'font-family': textEdit.textFont, 'color': textEdit.textColor}">
+    {{textEdit.text}}
+  </div>
+  }
+  <div *ngIf="isSelection" class="resize-handle resize-handle-right" appResizeHandle direction="right" (newWidth)="onNewWidth($event)">
+    <mat-icon>swap_horiz</mat-icon>
+  </div>
 </div>

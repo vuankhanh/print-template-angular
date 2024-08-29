@@ -1,1 +1,15 @@
-<p>line-edit works!</p>
+<div>
+  <form [formGroup]="editForm">
+    <div>
+      <label for="color">Line Color:</label>
+      <input id="color" type="color" formControlName="lineColor">
+    </div>
+    <div>
+      <label for="height">Line Height:</label>
+      <input id="height" type="number" formControlName="lineHeight">
+    </div>
+  </form>
+  <button mat-icon-button (click)="remove()">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>

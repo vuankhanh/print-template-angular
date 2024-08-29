@@ -1,1 +1,13 @@
-<div #templateContainer class="template-container" [ngStyle]="{'width': width+'mm', 'height': height+'mm'}"></div>
+<div class="container">
+  <div #templateContainer class="template-container" [ngStyle]="{'width.mm': width, 'height.mm': height}"></div>
+  <section>
+    <div class="example-flex-container">
+      <button mat-icon-button (click)="print(templateContainer)">
+        <mat-icon>print</mat-icon>
+      </button>
+      <button mat-icon-button disabled aria-label="Example icon button with a open in new tab icon">
+        <mat-icon>open_in_new</mat-icon>
+      </button>
+    </div>
+  </section>
+</div>

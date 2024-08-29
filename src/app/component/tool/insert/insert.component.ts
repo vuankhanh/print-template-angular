@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, Type } from '@angular/core';
+import { Component, Type } from '@angular/core';
 import { MaterialModule } from '../../../shared/modules/material';
 import { QrCodeComponent } from '../../../shared/component/qr-code/qr-code.component';
 import { LineComponent } from '../../../shared/component/line/line.component';
@@ -20,17 +20,17 @@ export class InsertComponent {
     {
       name: 'Text',
       icon: 'edit',
-      component: TextComponent
+      component: TextComponent as Type<Component>
     },
     {
       name: 'Qr Code',
       icon: 'qr_code',
-      component: QrCodeComponent
+      component: QrCodeComponent as Type<Component>
     },
     {
       name: 'Line',
       icon: 'horizontal_rule',
-      component: LineComponent
+      component: LineComponent as Type<Component>
     }
   ];
 

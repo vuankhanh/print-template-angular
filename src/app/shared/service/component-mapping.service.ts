@@ -23,3 +23,20 @@ export class ComponentMappingService {
     return this.componentMap.get(toolComponent);
   }
 }
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ComponentNameService {
+  private componentMap = new Map<string, Type<Component>>();
+  constructor() {
+    this.componentMap.set('_TextComponent', TextComponent as Type<Component>);
+    this.componentMap.set('_QrCodeComponent', QrCodeComponent as Type<Component>);
+    this.componentMap.set('_LineComponent', LineComponent as Type<Component>);
+    // Thêm các component khác tương ứng
+  }
+
+  getComponentTypeByName(name: string): Type<Component> | undefined {
+    return this.componentMap.get(name);
+  }
+}

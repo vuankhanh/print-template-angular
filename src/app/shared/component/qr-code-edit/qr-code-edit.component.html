@@ -1,1 +1,15 @@
-<p>qr-code-edit works!</p>
+<div>
+  <form [formGroup]="editForm">
+    <div>
+      <label for="image">Chọn ảnh qr Code:</label>
+      <img *ngIf="image" [src]="image" alt="qr code" style="width: 100px; height: 100px;">
+      <button mat-stroked-button (click)="input.click()">
+        {{ image ? 'Sửa lại' : 'Chọn ảnh' }}
+      </button>
+    </div>
+  </form>
+  <button mat-icon-button (click)="remove()">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>
+<input #input type="file" accept="image/*" (change)="onFileChange($event)" style="display: none;">

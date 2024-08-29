@@ -1,1 +1,37 @@
-<p>text-edit works!</p>
+<div>
+  <form [formGroup]="editForm">
+    <div>
+      <label for="text">Edit Text:</label>
+      <input id="text" type="text" formControlName="text">
+    </div>
+    <div>
+      <label for="size">Text Size:</label>
+      <input id="size" type="number" formControlName="textSize">
+    </div>
+    <div>
+      <label for="style">Text Style:</label>
+      <select id="style" formControlName="textStyle">
+        <option value="normal">Normal</option>
+        <option value="italic">Italic</option>
+        <option value="bold">Bold</option>
+      </select>
+    </div>
+    <div>
+      <label for="font">Text Font:</label>
+      <select id="font" formControlName="textFont">
+        <option value="Arial">Arial</option>
+        <option value="Courier New">Courier New</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Times New Roman">Times New Roman</option>
+        <option value="Verdana">Verdana</option>
+      </select>
+    </div>
+    <div>
+      <label for="color">Text Color:</label>
+      <input id="color" type="color" formControlName="textColor">
+    </div>
+  </form>
+  <button mat-icon-button (click)="remove()">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>

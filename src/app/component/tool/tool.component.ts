@@ -12,19 +12,17 @@ import { filter, map, Subscription } from 'rxjs';
     MatTabsModule,
     AttributeComponent,
     InsertComponent
-],
+  ],
   templateUrl: './tool.component.html',
   styleUrl: './tool.component.scss'
 })
 export class ToolComponent implements OnInit, OnDestroy {
   @ViewChild('matTabGroup', { static: true }) matTabGroup!: MatTabGroup;
 
-  subscription: Subscription = new Subscription();
+  private subscription: Subscription = new Subscription();
   constructor(
     private attributeService: AttributeService
-  ) {
-
-  }
+  ) { }
 
   ngOnInit(): void {
     this.matTabGroup.selectedIndex = 0;
