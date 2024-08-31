@@ -1,8 +1,17 @@
 <div class="tool-container" appClickOutside cdkDrag cdkDragBoundary=".template-container"
   [cdkDragFreeDragPosition]="position" (cdkDragEnded)="onDragEnded($event)"
-  [ngStyle]="{'outline' : isSelection ? '2px solid blue' : 'none', 'width.px': size.x}"
+  [ngStyle]="{'outline': isSelection ? '2px solid blue' : 'none', 'width.px': size.x}"
+  style="width: fit-content;
+  height: auto;
+  line-height: 1.2;
+  position: absolute;"
   (clickOutside)="onClickOutside($event)">
-  <div class="divider" [ngStyle]="{'background': lineEdit.lineColor, 'height.px': lineEdit.lineHeight}"></div>
+  <div [ngStyle]="{'border-top': 'solid '+lineEdit.lineHeight+'px '+lineEdit.lineColor}"
+  style="width: 100%;
+  min-width: 100px;
+  max-width: 100%;
+  height: 1px;
+  margin: 10px 0; /* Khoảng cách trên và dưới gạch phân cách */"></div>
   <div *ngIf="isSelection" class="resize-handle resize-handle-right" appResizeHandle direction="right"
     (newWidth)="onNewWidth($event)">
     <mat-icon>swap_horiz</mat-icon>

@@ -5,10 +5,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 div[cdkdrag]{
   cursor: move;
-  width: fit-content;
-  height: auto;
-  line-height: 1.2;
-  position: absolute;
 }
 
 .tool-container{

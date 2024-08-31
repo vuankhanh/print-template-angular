@@ -83,38 +83,72 @@ export class TemplateComponent implements AfterViewInit, OnDestroy {
   }
 
   print(template: HTMLDivElement) {
+    console.log(template.outerHTML);
+
     const widthPx = this.mmToPxUtil.mmToPx(100); // Chuyển đổi 100mm sang px
     const heightPx = this.mmToPxUtil.mmToPx(150); // Chuyển đổi 150mm sang px
     const scale = 3;
 
     html2canvas(template, { width: widthPx, height: heightPx, scale }).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-
       // Tạo cửa sổ mới và chèn hình ảnh canvas vào đó
       const printWindow = window.open('', '_blank');
       if (printWindow) {
         printWindow.document.write('<html><head><title>Print</title>');
         printWindow.document.write('<style>body { margin: 0; }</style>');
         printWindow.document.write('</head><body>');
-        printWindow.document.write(`<img src="${imgData}" style="width:100%;height:auto;">`);
+        printWindow.document.write(template.outerHTML);
         printWindow.document.write('</body></html>');
         printWindow.document.close();
         printWindow.print();
       }
-      
-      // const pdf = new jsPDF({
-      //   orientation: 'portrait',
-      //   unit: 'mm',
-      //   format: [100, 150]
-      // });
-
-      // // const widthMm = this.mmToPxUtil.pxToMm(canvas.width);
-      // // const heightMm = this.mmToPxUtil.pxToMm(canvas.height);
-
-      // // pdf.addImage(imgData, 'PNG', 0, 0, widthMm, heightMm);
-      // // pdf.save('document.pdf');
     });
 
+    // html2canvas(template, { width: widthPx, height: heightPx, scale }).then((canvas) => {
+    //   const imgData = canvas.toDataURL('image/png');
+
+    //   // Tạo cửa sổ mới và chèn hình ảnh canvas vào đó
+    //   const printWindow = window.open('', '_blank');
+    //   if (printWindow) {
+    //     printWindow.document.write('<html><head><title>Print</title>');
+    //     printWindow.document.write('<style>body { margin: 0; }</style>');
+    //     printWindow.document.write('</head><body>');
+    //     // Tạo phần tử img và gán src
+    //     const img = new Image();
+    //     img.src = imgData;
+    //     img.style.width = '100%';
+    //     img.style.height = 'auto';
+
+    //     // Đảm bảo rằng hình ảnh đã được tải xong trước khi in
+    //     img.onload = () => {
+    //       printWindow.document.body.appendChild(img);
+    //       printWindow.document.close();
+    //       printWindow.print();
+    //     };
+    //     printWindow.document.write('</body></html>');
+    //   }
+    // });
+
+  }
+
+  downloadPdf(template: HTMLDivElement) {
+    const widthPx = this.mmToPxUtil.mmToPx(100); // Chuyển đổi 100mm sang px
+    const heightPx = this.mmToPxUtil.mmToPx(150); // Chuyển đổi 150mm sang px
+    const scale = 3;
+    html2canvas(template, { width: widthPx, height: heightPx, scale }).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: [100 * scale, 150 * scale]
+      });
+
+      const widthMm = this.mmToPxUtil.pxToMm(canvas.width);
+      const heightMm = this.mmToPxUtil.pxToMm(canvas.height);
+
+      pdf.addImage(imgData, 'PNG', 0, 0, widthMm, heightMm);
+      pdf.save('document.pdf');
+    })
   }
 
   // onTemplateClick(event: MouseEvent) {
